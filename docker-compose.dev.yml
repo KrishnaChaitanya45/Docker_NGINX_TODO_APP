@@ -11,11 +11,12 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    env_file:
-      - ./.env
+    environment:
+      - PORT={PORT}
+      - SESSION_SECRET=${SESSION_SECRET}
     command: npm run dev
   mongo:
     image: mongo
     environment:
-      - MONGO_INITDB_ROOT_PASSWORD=krishna
-      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

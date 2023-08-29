@@ -10,8 +10,9 @@ services:
       - node-app
   node-app:
     build: .
-    env_file:
-      - ./.env
+    environment:
+      - PORT={PORT}
+      - SESSION_SECRET=${SESSION_SECRET}
     depends_on:
       - mongo #starts mongo service first and then goes to node, use --no-deps to start only node
       - redis
@@ -20,8 +21,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=krishna
-      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongo-db:/data/db
   redis:
