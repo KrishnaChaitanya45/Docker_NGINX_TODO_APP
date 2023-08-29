@@ -1,0 +1,11 @@
+version: "3"
+services: #here we define our services or the containers that will be running in our app
+  node-app: #this is the name of our service or the container
+    build: . #in order to build the image we need to specify the path of the Dockerfile
+    ports: #here we specify the ports that we want to expose
+      - "3000:3000"
+    volumes: #here we specify the volumes that we want to mount, these volumes help us while we are developing our app
+      - .:/app #to bind the current directory to the /app directory in the container
+      - /app/node_modules #to bind the node_modules directory to the /app/node_modules directory in the container such that even if we remove it from our directory the file remains same in the container
+    env_file: #env file location to be used by the container, we can also use environments : to specify the list of enviromental variables
+      - ./.env
